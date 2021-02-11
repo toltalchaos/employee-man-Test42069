@@ -97,6 +97,7 @@ th {
 }
 
 .navbar {
+  background-color: cadetblue;
   padding: 1rem;
   -webkit-box-shadow: 0 0 3px 0 grey;
           box-shadow: 0 0 3px 0 grey;
@@ -117,9 +118,10 @@ th {
 }
 
 .page-header {
+  background-color: cadetblue;
   padding: 6rem 0 0;
   text-align: center;
-  color: #262a40;
+  color: #49233e;
 }
 
 .page-header h1 {
@@ -226,7 +228,7 @@ th {
       grid-template-columns: 298px 1fr;
   -ms-grid-rows: auto calc(100vmax - 60px);
       grid-template-rows: auto calc(100vmax - 60px);
-      grid-template-areas: "strip strip" "sidebar panels";
+      grid-template-areas: "strip strip" "sidebar panels";
 }
 
 .control-strip {
