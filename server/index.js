@@ -4,7 +4,9 @@ require('dotenv').config()
 //import the express module
 const express = require('express');
 // import the path utils from Node.
-const path = require('path')
+const path = require('path');
+
+const cors = require('cors');
  
 
 // create an instance of express
@@ -18,11 +20,11 @@ const PORT =  process.env.PORT || 5000
 
  
 
-
+//middleware
 //To get access to the name value pairs send in the message Body of POST Request.
  app.use(express.urlencoded({extended:true}))
  app.use(express.json())
-
+ app.use(cors());
 
 //Middleware Serving Static Pages from client directory
 // second parameter is an configuration object of how we want
@@ -33,10 +35,20 @@ app.use(express.static(path.join(__dirname, "../client"), {extensions: ["html", 
  
  // Routing Middleware.  
  // login route.
+ //access form data post from the breq body
+ //tell express to use body data
+ //setup - see -  app.use(express.urlencoded({extended:true}))
  app.post('/login', (req, res)=>{
-   console.log(req.body)
-   res.send("trying to login")
+   //console.log(req.body)
+   //pass the user email and password to a login service.
+   //login service will read user file and check email........
+
+
+   res.sendFile(path.join(__dirname, "../client/dashboard.html"))
  })
+
+ //get http ==> perams query perams url?search=param
+ //app.get('/api/v1/teams', (req,res) => {  })
 
 // Final Middleware 
 // Catch all for any request not handled while express was
