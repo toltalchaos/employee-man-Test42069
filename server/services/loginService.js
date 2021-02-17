@@ -1,8 +1,8 @@
 /*
-        Login service will authenticate an Email and Password to Return a true or false response 
-        false = keeps users on loginpage
-        true= redirect user to dashboard
+        Login service will authenticate an Email and Password to Return a user credential object
+        OR return undefined
 
+     // node server/services/loginService.js
 */
 
 const fileService = require('./fileService');
@@ -13,7 +13,6 @@ const fileService = require('./fileService');
 //return BOOLEAN
 exports.authenticate = (credential) => {
     const {email, password} = {...credential};
-    //console.log(email,password)                                               // node server/services/loginService.js
     const users = fileService.getFileContents('../data/users.json');
     //console.log(users);
 
@@ -29,9 +28,7 @@ exports.authenticate = (credential) => {
             
         }
     })
-
-
-    console.log(inuser)
+    //console.log(inuser)
 
     return inuser;
 }

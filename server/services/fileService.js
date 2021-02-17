@@ -1,10 +1,6 @@
 /* 
        Read and Write File Utility
 
-       commonjs modules 
-       exports.funcname = () => {}
-
-       
 
 */
 
@@ -25,7 +21,6 @@ exports.writeFileContents = (filePath, data) =>{
     fs.writeFileSync(path.join(__dirname, filePath), fileContents)
 }
 
-// in ES exports{} -- using commonjs
 
 
  
