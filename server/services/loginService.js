@@ -11,15 +11,34 @@ const fileService = require('./fileService');
 //passing in credential object 
 //eventually export.authenticate 
 //return BOOLEAN
-const authenticate = (credential) => {
+exports.authenticate = (credential) => {
     const {email, password} = {...credential};
-    //console.log(email,password)                                               // node services/loginService.js
+    //console.log(email,password)                                               // node server/services/loginService.js
     const users = fileService.getFileContents('../data/users.json');
-    // test to find a matching value
-    // sort, filter, map, reduce, find, foreach... loop types
+    //console.log(users);
 
+    // test to find a matching value
+    const inuser = users.find((user) => {
+        if(user.email == email && user.password == password){
+
+            console.log('FOUND USER');
+            return user;
+        }
+        else{
+            console.log('NO USER');
+            
+        }
+    })
+
+
+    console.log(inuser)
+
+    return inuser;
 }
 
 
 //temporarily passing in data - would normally be called in by the redirect and get
-authenticate({username:"guy", email:"user@gmail.com", password:"1234"})
+// console.log('GOOD DATA')
+// authenticate({username:"jim", email:"user@gmail.com", password:"1234"})
+// console.log('BAD DATA')
+// authenticate({username:"baddata", email:"baddata@gmail.com", password:"baddata"})

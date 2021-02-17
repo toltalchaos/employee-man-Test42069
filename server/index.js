@@ -8,6 +8,7 @@ const path = require('path');
 
 const cors = require('cors');
  
+const loginlogic = require('./services/loginService')
 
 // create an instance of express
 const app = express()
@@ -39,12 +40,24 @@ app.use(express.static(path.join(__dirname, "../client"), {extensions: ["html", 
  //tell express to use body data
  //setup - see -  app.use(express.urlencoded({extended:true}))
  app.post('/login', (req, res)=>{
-   //console.log(req.body)
+   console.log(req.body) // returns the object containing form fields
    //pass the user email and password to a login service.
    //login service will read user file and check email........
+   const exiusercred = loginlogic.authenticate(req.body);
+
+   if(exiusercred == undefined){
+     //bad data - error out
+     res.sendFile(path.join(__dirname, "../client/login.html"))
+   }
+   else{
+     //good data - redirect
+       res.sendFile(path.join(__dirname, "../client/dashboard.html"))
+   }
 
 
-   res.sendFile(path.join(__dirname, "../client/dashboard.html"))
+
+
+ 
  })
 
  //get http ==> perams query perams url?search=param
